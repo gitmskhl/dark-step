@@ -5,10 +5,7 @@ class Game:
     def __init__(self):
         pygame.init()
         self.fullscreen = settings.DEFAULT_FULLSCREEN
-        if self.fullscreen:
-            self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-        else:
-            self.screen = pygame.display.set_mode((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))  # Windowed mode
+        self._set_display_mode()
         self.clock = pygame.time.Clock()
         self.running = True
 
@@ -25,13 +22,16 @@ class Game:
                         self.running = False
                     elif event.key == keybindings.TOGGLE_FULLSCREEN:
                         self.fullscreen = not self.fullscreen
-                        if self.fullscreen:
-                            self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-                        else:
-                            self.screen = pygame.display.set_mode((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))  # Windowed mode
+                        self._set_display_mode()
             pygame.display.flip()  # Update the display
 
         pygame.quit()
+    
+    def _set_display_mode(self):
+        if self.fullscreen:
+            self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        else:
+            self.screen = pygame.display.set_mode((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))  # Windowed mode
 
 
 if __name__ == "__main__":
