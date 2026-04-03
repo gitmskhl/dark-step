@@ -14,7 +14,7 @@ def load_image(path: str, scale: float, colorkey=None) -> pygame.Surface:
 
 
 def load_images(path: str, scale: float, count: int, colorkey=None) -> list[pygame.Surface]:
-    """Load multiple images from the specified path with a numbered format, scale them, and set a colorkey if provided."""
+    """Load a spritesheet and slice it into equal-width frames, scale them, and set a colorkey if provided."""
     spritesheet = pygame.image.load(path).convert_alpha()
     images = []
     for i in range(count):
