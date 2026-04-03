@@ -8,3 +8,6 @@ MOVE_RIGHT = pygame.K_RIGHT
 MOVE_LEFT = pygame.K_LEFT
 MOVE_JUMP = pygame.K_SPACE
 ATTACK = pygame.K_x
+
+# window controls
+TOGGLE_FULLSCREEN = pygame.K_F11
