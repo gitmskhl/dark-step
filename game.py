@@ -1,17 +1,20 @@
 import pygame
-from scripts import keybindings
+from scripts import keybindings, settings
 
 class Game:
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)  # Fullscreen mode
+        self.fullscreen = settings.DEFAULT_FULLSCREEN
+        if self.fullscreen:
+            self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        else:
+            self.screen = pygame.display.set_mode((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))  # Windowed mode
         self.clock = pygame.time.Clock()
         self.running = True
-        self.fullscreen = True
 
     def run(self):
         while self.running:
-            self.clock.tick(60)  # Limit to 60 frames per second
+            self.clock.tick(settings.FPS)  # Limit to FPS frames per second
             self.screen.fill((0, 0, 0))  # Clear the screen with black
             
             for event in pygame.event.get():
@@ -25,7 +28,7 @@ class Game:
                         if self.fullscreen:
                             self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
                         else:
-                            self.screen = pygame.display.set_mode((800, 600))  # Windowed mode
+                            self.screen = pygame.display.set_mode((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))  # Windowed mode
             pygame.display.flip()  # Update the display
 
         pygame.quit()
