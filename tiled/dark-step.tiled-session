@@ -1,0 +1,31 @@
+{
+    "activeFile": "Dungeon Tile Set.tsx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "Dungeon Tile Set.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1.5
+        },
+        "level 1.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 467,
+                "y": 1011.9999999999999
+            }
+        }
+    },
+    "last.imagePath": "/home/musa/study/python/pygame/dark-step/tiled",
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+        "level 1.tmx",
+        "Dungeon Tile Set.tsx"
+    ],
+    "project": "dark-step.tiled-project",
+    "recentFiles": [
+        "level 1.tmx",
+        "Dungeon Tile Set.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}
