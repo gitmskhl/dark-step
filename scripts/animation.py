@@ -1,5 +1,7 @@
 import pygame
 
+from scripts.utils import load_images
+
 class Animation:
     def __init__(self, frames: list[pygame.Surface], frame_rate: int, repeat: bool = True):
         self.frames = frames
@@ -36,3 +38,8 @@ class FlippedAnimation(Animation):
             surface.blit(self.flipped_frames[self.current_frame], position)
         else:
             surface.blit(self.frames[self.current_frame], position)
+            
+class LazyFlippedAnimation(FlippedAnimation):
+    def __init__(self, spritesheetpath: str, frame_count: int, frame_rate: int, scale: float, colorkey=None, repeat: bool = True):
+        frames = load_images(spritesheetpath, scale, frame_count, colorkey)
+        super().__init__(frames, frame_rate, repeat)
