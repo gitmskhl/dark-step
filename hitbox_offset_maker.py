@@ -6,13 +6,13 @@ from scripts.hitbox_config import delete_entry, get_profile_path, load_profile, 
 # =========================
 # Configuration
 # =========================
-SPRITESHEET_PATH = "images/idle.png"
+SPRITESHEET_PATH = "images/run.png"
 FRAME_COUNT = 10
 ANIMATION_FPS = 7
 SCALE = 4.0
 COLORKEY = None  # Example: (0, 0, 0)
 PROFILE_NAME = "player"
-TARGET_STATE = "idle"  # Example: idle, walk
+TARGET_STATE = "run"  # Example: idle, walk
 TARGET_DIRECTION = "LEFT"  # RIGHT or LEFT
 DEFAULT_DIRECTION = "RIGHT"  # Source spritesheet direction
 

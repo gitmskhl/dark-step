@@ -2,11 +2,11 @@ import pygame
 from .animation import LazyFlippedAnimation
 from .entity import Entity, EntityDirection
 from .hitbox_config import get_profile_path, load_profile
-from .settings import PLAYER_SCALE
+from .settings import PLAYER_SCALE, DEBUG_MODE
 
 class Player(Entity):
-    def __init__(self, x: int, y: int, speedx: int):
-        super().__init__(x, y, speedx)
+    def __init__(self, x: int, y: int, speedx: int, jump_power: int = 10, max_jumps: int = 1):
+        super().__init__(x, y, speedx, jump_power, max_jumps)
         self._init_animations()
     
     def _init_offsets(self):
@@ -69,6 +69,7 @@ class Player(Entity):
 
         idle_size = self.animations['idle'].get_current_frame().get_size()
         walk_size = self.animations['walk'].get_current_frame().get_size()
+        run_size = self.animations['run'].get_current_frame().get_size()
         self.hit_offsets = {
             'idle': {
                 EntityDirection.RIGHT: ratios_to_pixels(idle_size, ratio_for('idle', EntityDirection.RIGHT)),
@@ -77,19 +78,25 @@ class Player(Entity):
             'walk': {
                 EntityDirection.RIGHT: ratios_to_pixels(walk_size, ratio_for('walk', EntityDirection.RIGHT)),
                 EntityDirection.LEFT: ratios_to_pixels(walk_size, ratio_for('walk', EntityDirection.LEFT))
+            },
+            'run': {
+                EntityDirection.RIGHT: ratios_to_pixels(run_size, ratio_for('run', EntityDirection.RIGHT)),
+                EntityDirection.LEFT: ratios_to_pixels(run_size, ratio_for('run', EntityDirection.LEFT))
             }
         }
     
     def _init_animations(self):
         self.animations = {
             'idle': LazyFlippedAnimation('images/idle.png', 10, 7, PLAYER_SCALE, repeat=True),
-            'walk': LazyFlippedAnimation('images/walk.png', 10, 7, PLAYER_SCALE, repeat=True)
+            'walk': LazyFlippedAnimation('images/walk.png', 10, 7, PLAYER_SCALE, repeat=True),
+            'run': LazyFlippedAnimation('images/run.png', 10, 7, PLAYER_SCALE, repeat=True)
         }
         self._init_offsets()
     
     def render(self, surface: pygame.Surface):
         super().render(surface)
-        pygame.draw.rect(surface, (255, 0, 0), self.get_rect(), 1)  # Debug: Draw hitbox
+        if DEBUG_MODE:
+            pygame.draw.rect(surface, (255, 0, 0), self.get_rect(), 1)  # Debug: Draw hitbox
     
     def get_rect(self) -> pygame.Rect:
         offset = self.hit_offsets[self.state][self.dir]

@@ -8,7 +8,7 @@ class Game:
         self._set_display_mode()
         self.clock = pygame.time.Clock()
         self.running = True
-        self.player = player.Player(100, 100, 3)  # Example player initialization
+        self.player = player.Player(100, 100, 2, 10, 1)  # Example player initialization
 
     def run(self):
         while self.running:
@@ -26,6 +26,10 @@ class Game:
                         self.player.move_right = True
                     elif event.key == keybindings.MOVE_LEFT:
                         self.player.move_left = True
+                    elif event.key == keybindings.RUN:
+                        self.player.running = True
+                    elif event.key == keybindings.MOVE_JUMP:
+                        self.player.jump()
                     elif event.key == keybindings.EXIT:
                         self.running = False
                     elif event.key == keybindings.TOGGLE_FULLSCREEN:
@@ -36,6 +40,8 @@ class Game:
                         self.player.move_right = False
                     elif event.key == keybindings.MOVE_LEFT:
                         self.player.move_left = False
+                    elif event.key == keybindings.RUN:
+                        self.player.running = False
             pygame.display.flip()  # Update the display
 
         pygame.quit()

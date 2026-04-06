@@ -8,7 +8,7 @@ SCREEN_HEIGHT = 600
 DEFAULT_FULLSCREEN = False
 
 # Physics settings
-GRAVITY = 0#0.5
+GRAVITY = 0.5
 
 # Debug settings
 DEBUG_MODE = True
