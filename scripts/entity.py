@@ -61,3 +61,6 @@ class Entity(ABC):
     def get_rect(self) -> pygame.Rect:
         pass
     
+    @abstractmethod
+    def _init_animations(self):
+        pass
