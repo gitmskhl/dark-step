@@ -23,6 +23,7 @@ class Entity(ABC):
         self.on_ground = False
         self.vy = 0
         self.animations: dict[str, FlippedAnimation] = {}
+        self._init_animations()
         self.state: str = "idle"
     
     def _update_state(self):

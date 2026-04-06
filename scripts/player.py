@@ -7,7 +7,6 @@ from .settings import PLAYER_SCALE, DEBUG_MODE
 class Player(Entity):
     def __init__(self, x: int, y: int, speedx: int, jump_power: int = 10, max_jumps: int = 1):
         super().__init__(x, y, speedx, jump_power, max_jumps)
-        self._init_animations()
     
     def _init_offsets(self):
         profile_name = 'player'
