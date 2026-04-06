@@ -12,3 +12,6 @@ GRAVITY = 0.5
 
 # Debug settings
 DEBUG_MODE = True
+
+# Player settings
+PLAYER_SCALE = 2

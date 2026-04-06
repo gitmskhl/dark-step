@@ -1,0 +1,146 @@
+{
+  "profile": "player",
+  "offsets": {
+    "idle": {
+      "RIGHT": {
+        "size_x": 0.076171875,
+        "size_y": 0.23046875,
+        "offset_x": 0.46484375,
+        "offset_y": 0.396484375
+      },
+      "LEFT": {
+        "size_x": 0.078125,
+        "size_y": 0.23046875,
+        "offset_x": 0.458984375,
+        "offset_y": 0.39453125
+      }
+    },
+    "walk": {
+      "RIGHT": {
+        "size_x": 0.064453125,
+        "size_y": 0.23046875,
+        "offset_x": 0.478515625,
+        "offset_y": 0.390625
+      },
+      "LEFT": {
+        "size_x": 0.064453125,
+        "size_y": 0.23046875,
+        "offset_x": 0.451171875,
+        "offset_y": 0.390625
+      }
+    },
+    "run": {
+      "RIGHT": {
+        "size_x": 0.07421875,
+        "size_y": 0.228515625,
+        "offset_x": 0.50390625,
+        "offset_y": 0.39453125
+      },
+      "LEFT": {
+        "size_x": 0.072265625,
+        "size_y": 0.22265625,
+        "offset_x": 0.4296875,
+        "offset_y": 0.400390625
+      }
+    }
+  },
+  "animations": {
+    "walk": {
+      "spritesheet_path": "images/walk.png",
+      "frame_count": 10,
+      "animation_fps": 7,
+      "scale": 4.0,
+      "colorkey": null,
+      "target_direction": "LEFT",
+      "default_direction": "RIGHT",
+      "use_manual_frame_size": false,
+      "frame_width": 32,
+      "frame_height": 32,
+      "row_index": 0
+    },
+    "walk:LEFT": {
+      "spritesheet_path": "images/walk.png",
+      "frame_count": 10,
+      "animation_fps": 7,
+      "scale": 4.0,
+      "colorkey": null,
+      "target_direction": "LEFT",
+      "default_direction": "RIGHT",
+      "use_manual_frame_size": false,
+      "frame_width": 32,
+      "frame_height": 32,
+      "row_index": 0,
+      "state": "walk"
+    },
+    "walk:RIGHT": {
+      "spritesheet_path": "images/walk.png",
+      "frame_count": 10,
+      "animation_fps": 7,
+      "scale": 4.0,
+      "colorkey": null,
+      "target_direction": "RIGHT",
+      "default_direction": "RIGHT",
+      "use_manual_frame_size": false,
+      "frame_width": 32,
+      "frame_height": 32,
+      "row_index": 0,
+      "state": "walk"
+    },
+    "idle:RIGHT": {
+      "spritesheet_path": "images/idle.png",
+      "frame_count": 10,
+      "animation_fps": 7,
+      "scale": 4.0,
+      "colorkey": null,
+      "target_direction": "RIGHT",
+      "default_direction": "RIGHT",
+      "use_manual_frame_size": false,
+      "frame_width": 32,
+      "frame_height": 32,
+      "row_index": 0,
+      "state": "idle"
+    },
+    "idle:LEFT": {
+      "spritesheet_path": "images/idle.png",
+      "frame_count": 10,
+      "animation_fps": 7,
+      "scale": 4.0,
+      "colorkey": null,
+      "target_direction": "LEFT",
+      "default_direction": "RIGHT",
+      "use_manual_frame_size": false,
+      "frame_width": 32,
+      "frame_height": 32,
+      "row_index": 0,
+      "state": "idle"
+    },
+    "run:RIGHT": {
+      "spritesheet_path": "images/run.png",
+      "frame_count": 10,
+      "animation_fps": 7,
+      "scale": 4.0,
+      "colorkey": null,
+      "target_direction": "RIGHT",
+      "default_direction": "RIGHT",
+      "use_manual_frame_size": false,
+      "frame_width": 32,
+      "frame_height": 32,
+      "row_index": 0,
+      "state": "run"
+    },
+    "run:LEFT": {
+      "spritesheet_path": "images/run.png",
+      "frame_count": 10,
+      "animation_fps": 7,
+      "scale": 4.0,
+      "colorkey": null,
+      "target_direction": "LEFT",
+      "default_direction": "RIGHT",
+      "use_manual_frame_size": false,
+      "frame_width": 32,
+      "frame_height": 32,
+      "row_index": 0,
+      "state": "run"
+    }
+  }
+}
