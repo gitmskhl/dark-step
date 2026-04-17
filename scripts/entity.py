@@ -37,6 +37,10 @@ class Entity(ABC):
             self.state = 'walk' if not self.running else 'run'
     
     def update(self):
+        self.vy += GRAVITY
+        self.y += self.vy
+        self._collision_y()
+        
         if self.move_right and not self.move_left:
             self.dir = EntityDirection.RIGHT
             self.x += self.speedx * (2 if self.running else 1)
@@ -46,9 +50,6 @@ class Entity(ABC):
             self.x -= self.speedx * (2 if self.running else 1)
             self._collision_x(-1)
 
-        self.vy += GRAVITY
-        self.y += self.vy
-        self._collision_y()
 
         self._update_state()
         self.animations[self.state].update()
@@ -67,6 +68,7 @@ class Entity(ABC):
         rect = self.get_rect()
         collision_rects = self.level.get_collision_rects(rect)
         for collision_rect in collision_rects:
+            pygame.draw.rect(pygame.display.get_surface(), (255, 0, 0), collision_rect.move(-self.level.camera_x, -self.level.camera_y), 1)  # Debug: Draw collision rects
             if rect.colliderect(collision_rect):
                 if dx > 0:
                     rect.right = collision_rect.left
@@ -80,6 +82,7 @@ class Entity(ABC):
         collision_rects = self.level.get_collision_rects(rect)
         self.on_ground = False
         for collision_rect in collision_rects:
+            pygame.draw.rect(pygame.display.get_surface(), (0, 255, 0), collision_rect.move(-self.level.camera_x, -self.level.camera_y), 1)  # Debug: Draw collision rects
             if rect.colliderect(collision_rect):
                 if self.vy > 0:
                     rect.bottom = collision_rect.top
