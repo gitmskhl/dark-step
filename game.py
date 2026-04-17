@@ -1,5 +1,5 @@
 import pygame
-from scripts import keybindings, settings, player
+from scripts import keybindings, settings, player, level
 
 class Game:
     def __init__(self):
@@ -8,15 +8,18 @@ class Game:
         self._set_display_mode()
         self.clock = pygame.time.Clock()
         self.running = True
-        self.player = player.Player(100, 100, 2, 10, 1)  # Example player initialization
+        self.level = level.Level(1)  # Example level initialization
+        self.player = player.Player(*self.level.get_player_coords(), 2, self.level, 10, 1)  # Example player initialization
 
     def run(self):
         while self.running:
             self.clock.tick(settings.FPS)  # Limit to FPS frames per second
             self.screen.fill((0, 0, 0))  # Clear the screen with black
             
+            self.level.render(self.screen)
             self.player.update()
-            self.player.render(self.screen)
+            self.player.render(self.screen, self.level.camera_x, self.level.camera_y)
+            self.level.camera_track(*self.player.get_rect().center)
             
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

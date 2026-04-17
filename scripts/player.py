@@ -3,11 +3,12 @@ from .animation import LazyFlippedAnimation
 from .entity import Entity, EntityDirection
 from .hitbox_config import get_profile_path, load_profile
 from .settings import PLAYER_SCALE, DEBUG_MODE
+from .level import Level
 
 class Player(Entity):
-    def __init__(self, x: int, y: int, speedx: int, jump_power: int = 10, max_jumps: int = 1):
-        super().__init__(x, y, speedx, jump_power, max_jumps)
-    
+    def __init__(self, x: int, y: int, speedx: int, level: Level, jump_power: int = 10, max_jumps: int = 1):
+        super().__init__(x, y, speedx, level, jump_power, max_jumps)
+
     def _init_offsets(self):
         profile_name = 'player'
         loaded = load_profile(profile_name)
@@ -92,11 +93,17 @@ class Player(Entity):
         }
         self._init_offsets()
     
-    def render(self, surface: pygame.Surface):
-        super().render(surface)
+    def render(self, surface: pygame.Surface, camera_x: int = 0, camera_y: int = 0):
+        super().render(surface, camera_x, camera_y)
         if DEBUG_MODE:
-            pygame.draw.rect(surface, (255, 0, 0), self.get_rect(), 1)  # Debug: Draw hitbox
+            pygame.draw.rect(surface, (255, 0, 0), self.get_rect().move(-camera_x, -camera_y), 1)  # Debug: Draw hitbox
     
     def get_rect(self) -> pygame.Rect:
         offset = self.hit_offsets[self.state][self.dir]
         return pygame.Rect(self.x + offset[0], self.y + offset[1], offset[2], offset[3])
+    
+    def correct_x(self, rect: pygame.Rect):
+        self.x = rect.left - self.hit_offsets[self.state][self.dir][0]
+    
+    def correct_y(self, rect: pygame.Rect):
+        self.y = rect.top - self.hit_offsets[self.state][self.dir][1]

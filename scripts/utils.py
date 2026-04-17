@@ -10,10 +10,14 @@ def _scale_surface(image: pygame.Surface, scale: float) -> pygame.Surface:
     return pygame.transform.scale(image, (width, height))
 
 
-def load_image(path: str, scale: float, colorkey=None) -> pygame.Surface:
+def load_image(path: str, scale: float, colorkey=None, alpha=False) -> pygame.Surface:
     """Load an image from the specified path, scale it, and set a colorkey if provided."""
-    image = pygame.image.load(path).convert_alpha()
+    image = pygame.image.load(path)
     image = _scale_surface(image, scale)
+    if alpha:
+        image = image.convert_alpha()
+    else:
+        image = image.convert()
     if colorkey is not None:
         image.set_colorkey(colorkey)
     
