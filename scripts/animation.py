@@ -26,6 +26,11 @@ class Animation:
     
     def get_current_frame(self) -> pygame.Surface:
         return self.frames[self.current_frame]
+
+
+    def reset(self) -> None:
+        self.current_frame = 0
+        self.time_since_last_frame = 0
     
     
 class FlippedAnimation(Animation):

@@ -70,6 +70,8 @@ class Player(Entity):
         idle_size = self.animations['idle'].get_current_frame().get_size()
         walk_size = self.animations['walk'].get_current_frame().get_size()
         run_size = self.animations['run'].get_current_frame().get_size()
+        jump_size = self.animations['jump'].get_current_frame().get_size()
+        fall_size = self.animations['fall'].get_current_frame().get_size()
         self.hit_offsets = {
             'idle': {
                 EntityDirection.RIGHT: ratios_to_pixels(idle_size, ratio_for('idle', EntityDirection.RIGHT)),
@@ -82,6 +84,14 @@ class Player(Entity):
             'run': {
                 EntityDirection.RIGHT: ratios_to_pixels(run_size, ratio_for('run', EntityDirection.RIGHT)),
                 EntityDirection.LEFT: ratios_to_pixels(run_size, ratio_for('run', EntityDirection.LEFT))
+            },
+            'jump': {
+                EntityDirection.RIGHT: ratios_to_pixels(jump_size, ratio_for('jump', EntityDirection.RIGHT)),
+                EntityDirection.LEFT: ratios_to_pixels(jump_size, ratio_for('jump', EntityDirection.LEFT))
+            },
+            'fall': {
+                EntityDirection.RIGHT: ratios_to_pixels(fall_size, ratio_for('fall', EntityDirection.RIGHT)),
+                EntityDirection.LEFT: ratios_to_pixels(fall_size, ratio_for('fall', EntityDirection.LEFT))
             }
         }
     
@@ -89,7 +99,9 @@ class Player(Entity):
         self.animations = {
             'idle': LazyFlippedAnimation('images/idle.png', 10, 7, PLAYER_SCALE, repeat=True),
             'walk': LazyFlippedAnimation('images/walk.png', 10, 7, PLAYER_SCALE, repeat=True),
-            'run': LazyFlippedAnimation('images/run.png', 10, 7, PLAYER_SCALE, repeat=True)
+            'run': LazyFlippedAnimation('images/run.png', 10, 7, PLAYER_SCALE, repeat=True),
+            'jump': LazyFlippedAnimation('images/jump.png', 6, 7, PLAYER_SCALE, repeat=False),
+            'fall': LazyFlippedAnimation('images/fall.png', 4, 7, PLAYER_SCALE, repeat=False),
         }
         self._init_offsets()
     

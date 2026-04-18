@@ -20,16 +20,20 @@ class Entity(ABC):
         self.move_right = False
         self.move_left = False
         self.running = False
+        self.timer_in_air = 0
         self.max_jumps = max_jumps
         self.jumps = 0
-        self.on_ground = False
         self.vy = 0
         self.animations: dict[str, FlippedAnimation] = {}
         self._init_animations()
         self.state: str = "idle"
     
     def _update_state(self):
-        if self.move_left == self.move_right:
+        if self.jumps > 0 and self.timer_in_air > 5:
+            self.state = 'jump'
+        elif self.vy > 1 and self.timer_in_air > 5:
+            self.state = 'fall'
+        elif self.move_left == self.move_right:
             self.state = "idle"
         elif self.move_right:
             self.state = 'walk' if not self.running else 'run'
@@ -37,6 +41,7 @@ class Entity(ABC):
             self.state = 'walk' if not self.running else 'run'
     
     def update(self):
+        self.timer_in_air += 1
         self.vy += GRAVITY
         self.y += self.vy
         self._collision_y()
@@ -62,7 +67,7 @@ class Entity(ABC):
         if self.jumps < self.max_jumps:
             self.vy = -self.jump_power
             self.jumps += 1
-            self.on_ground = False
+            self.animations['jump'].reset()  # type: ignore
     
     def _collision_x(self, dx: int | float):
         rect = self.get_rect()
@@ -80,14 +85,13 @@ class Entity(ABC):
     def _collision_y(self):
         rect = self.get_rect()
         collision_rects = self.level.get_collision_rects(rect)
-        self.on_ground = False
         for collision_rect in collision_rects:
             pygame.draw.rect(pygame.display.get_surface(), (0, 255, 0), collision_rect.move(-self.level.camera_x, -self.level.camera_y), 1)  # Debug: Draw collision rects
             if rect.colliderect(collision_rect):
                 if self.vy > 0:
                     rect.bottom = collision_rect.top
-                    self.on_ground = True
                     self.jumps = 0
+                    self.timer_in_air = 0
                 else:
                     rect.top = collision_rect.bottom
                 self.vy = 0
