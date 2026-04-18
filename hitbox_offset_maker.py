@@ -3,21 +3,17 @@ from typing import Any
 
 from scripts.hitbox_config import delete_entry, get_profile_path, load_profile, save_entry
 
-# =========================
-# Configuration
-# =========================
-SPRITESHEET_PATH = "images/run.png"
-FRAME_COUNT = 10
-ANIMATION_FPS = 7
-SCALE = 4.0
-COLORKEY = None  # Example: (0, 0, 0)
-PROFILE_NAME = "player"
-TARGET_STATE = "run"  # Example: idle, walk
-TARGET_DIRECTION = "LEFT"  # RIGHT or LEFT
-DEFAULT_DIRECTION = "RIGHT"  # Source spritesheet direction
 
-# If True, use FRAME_WIDTH/FRAME_HEIGHT and ROW_INDEX for slicing.
-# If False, the script slices one row into FRAME_COUNT equal parts.
+SPRITESHEET_PATH = "images/fall.png"
+FRAME_COUNT = 4
+ANIMATION_FPS = 3
+SCALE = 4.0
+COLORKEY = None  
+PROFILE_NAME = "player"
+TARGET_STATE = "fall"  
+TARGET_DIRECTION = "LEFT"  
+DEFAULT_DIRECTION = "RIGHT"  
+
 USE_MANUAL_FRAME_SIZE = False
 FRAME_WIDTH = 32
 FRAME_HEIGHT = 32

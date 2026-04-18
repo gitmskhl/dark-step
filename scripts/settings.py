@@ -15,3 +15,11 @@ DEBUG_MODE = True
 
 # Player settings
 PLAYER_SCALE = 2
+
+# Level settings
+LEVEL_DIR_PATH = 'tiled'
+BACKGROUND_DIR_PATH = 'tiled'
+LEVEL_SCALE = 2
+
+# Camera settings
+CAMERA_SMOOTHING = 0.1
